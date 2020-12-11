@@ -34,9 +34,10 @@
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+			<attribute name="owner.project.facets" value="jboss.m2"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/ADMINX/Documents/9ciclo/MATERIAS/APPDISTRIBUIDAS/javax.mail_1.4.0.v201005080615.jar"/>
-	<classpathentry kind="lib" path="C:/Users/ADMINX/Documents/9ciclo/MATERIAS/APPDISTRIBUIDAS/itextpdf-5.5.9.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Gabriel Leonardo Chu/Documents/eclipse-workspace/dependencias/javax.mail_1.4.0.v201005080615.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Gabriel Leonardo Chu/Documents/eclipse-workspace/dependencias/itextpdf-5.5.9.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
