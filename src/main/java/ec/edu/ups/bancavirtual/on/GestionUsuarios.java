@@ -1,28 +1,27 @@
 package ec.edu.ups.bancavirtual.on;
 
+import ec.edu.ups.bancavirtual.modelo.*;
+import ec.edu.ups.bancavirtual.dao.TransferenciaLocalDAO;
+import ec.edu.ups.bancavirtual.dao.*;
+
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
+
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.PrintStream;
-import java.io.UnsupportedEncodingException;
+
 import java.sql.SQLException;
 import java.text.DateFormat;
-import java.text.ParseException;
+
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
+
+
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Formatter;
+
 import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
 
 import javax.ejb.Stateless;
 import javax.faces.context.FacesContext;
@@ -47,17 +46,7 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Form;
 import javax.ws.rs.core.MediaType;
 
-import com.itextpdf.text.Chunk;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Phrase;
-import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
 
-import ec.edu.ups.bancavirtual.modelo.*;
-import ec.edu.ups.bancavirtual.dao.*;
 
 /**
  * @author ADMINX
@@ -69,6 +58,8 @@ public class GestionUsuarios implements GestionUsuarioLocal {
 	private ClienteDAO clienteDAO;
 	@Inject
 	private SesionClienteDAO sesionClienteDAO;
+	@Inject
+	private TransferenciaLocalDAO transferenciaLocalDAO;
 	@Inject
 	private EmpleadoDAO empleadoDAO;
 	@Inject
@@ -309,10 +300,10 @@ public class GestionUsuarios implements GestionUsuarioLocal {
 	 *                             buscar
 	 * @return Cuenta de ahorros que se obtiende de la busqueda
 	 */
-//	public CuentaDeAhorro buscarCuentaDeAhorro(String numeroCuentaDeAhorro) {
-//		CuentaDeAhorro cuentaDeAhorro = cuentaDeAhorroDAO.read(numeroCuentaDeAhorro);
-//		return cuentaDeAhorro;
-//	}
+	public CuentaDeAhorro buscarCuentaDeAhorro(String numeroCuentaDeAhorro) {
+		CuentaDeAhorro cuentaDeAhorro = cuentaDeAhorroDAO.read(numeroCuentaDeAhorro);
+		return cuentaDeAhorro;
+	}
 
 	/**
 	 * Metodo que me permite buscar una cuenta de ahorros
@@ -320,11 +311,11 @@ public class GestionUsuarios implements GestionUsuarioLocal {
 	 * @param cedulaCliente Cedula del cliente de la cuenta de ahorros
 	 * @return Cuenta de ahorro obtenida de la busqueda
 	 */
-//	public CuentaDeAhorro buscarCuentaDeAhorroCliente(String cedulaCliente) {
-//		CuentaDeAhorro cuentaDeAhorro = cuentaDeAhorroDAO.getCuentaCedulaCliente(cedulaCliente);
-//		return cuentaDeAhorro;
-//
-//	}
+	public CuentaDeAhorro buscarCuentaDeAhorroCliente(String cedulaCliente) {
+		CuentaDeAhorro cuentaDeAhorro = cuentaDeAhorroDAO.getCuentaCedulaCliente(cedulaCliente);
+		return cuentaDeAhorro;
+
+	}
 
 	/**
 	 * Metodo que me permite eliminar una cuenta de ahorros
@@ -332,19 +323,19 @@ public class GestionUsuarios implements GestionUsuarioLocal {
 	 * @param numeroCuentaDeAhorro Numero de la cuenta de ahorros que se desea
 	 *                             eliminar
 	 */
-//	public void eliminarCuentaDeAhorro(String numeroCuentaDeAhorro) {
-//		cuentaDeAhorroDAO.delete(numeroCuentaDeAhorro);
-//	}
-//
-//	/**
-//	 * Metodo que permite actualizar una cuenta de ahorros
-//	 * 
-//	 * @param cuentaDeAhorro Cuenta de Ahorros que se desea actualizar
-//	 */
-//	public void actualizarCuentaDeAhorro(CuentaDeAhorro cuentaDeAhorro) {
-//		cuentaDeAhorroDAO.update(cuentaDeAhorro);
-//	}
-//
+	public void eliminarCuentaDeAhorro(String numeroCuentaDeAhorro) {
+		cuentaDeAhorroDAO.delete(numeroCuentaDeAhorro);
+	}
+
+	/**
+	 * Metodo que permite actualizar una cuenta de ahorros
+	 * 
+	 * @param cuentaDeAhorro Cuenta de Ahorros que se desea actualizar
+	 */
+	public void actualizarCuentaDeAhorro(CuentaDeAhorro cuentaDeAhorro) {
+		cuentaDeAhorroDAO.update(cuentaDeAhorro);
+	}
+
 	/**
 	 * Metodo que me permite listar las cuentas de ahorros
 	 * 
@@ -563,16 +554,16 @@ public class GestionUsuarios implements GestionUsuarioLocal {
 	 *               transacciones de acuedo al parametro
 	 * @return Lista de Transacciones que realizo un Cliente de acuerdo al parametro
 	 */
-//	public List<Transaccion> listadeTransacciones(String cedula) {
-//		try {
-//			return transaccionDAO.getListaTransacciones(cedula);
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		return null;
-//
-//	}
+	public List<Transaccion> listadeTransacciones(String cedula) {
+		try {
+			return transaccionDAO.getListaTransacciones(cedula);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+
+	}
 
 	/**
 	 * Metodo para guardad una Transaccion
@@ -600,17 +591,17 @@ public class GestionUsuarios implements GestionUsuarioLocal {
 	 *         fechas indicadas.
 	 * @throws Exception Excepción por si el cliente no tiene transacciones.
 	 */
-//	public List<Transaccion> obtenerTransaccionesFechaHora(String cedula, String fechaI, String fechaF) {
-//		String fechaInicio = fechaI + " 00:00:00.000000";
-//		String fechaFinal = fechaF + " 23:59:59.000000";
-//		try {
-//			return transaccionDAO.getListaTransaccionesFechas(cedula, fechaInicio, fechaFinal);
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		return null;
-//	}
+	public List<Transaccion> obtenerTransaccionesFechaHora(String cedula, String fechaI, String fechaF) {
+		String fechaInicio = fechaI + " 00:00:00.000000";
+		String fechaFinal = fechaF + " 23:59:59.000000";
+		try {
+			return transaccionDAO.getListaTransaccionesFechas(cedula, fechaInicio, fechaFinal);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	/**
 	 * Metodo que permite realizar una transacción por parte del cajero
@@ -715,10 +706,10 @@ public class GestionUsuarios implements GestionUsuarioLocal {
 //	 * @param transfereciaLocal Una clase TransferenciaLocal para realizar el proceso de guardado.
 //	 */
 //	
-//	public void guardarTransferenciaLocal(TransfereciaLocal transfereciaLocal) {
-//		transferenciaLocalDAO.insert(transfereciaLocal);
-//	}
-//
+	public void guardarTransferenciaLocal(TransferenciaLocal transferenciaLocal) {
+		transferenciaLocalDAO.insert(transferenciaLocal);
+	}
+
 
 
 
@@ -864,10 +855,10 @@ public class GestionUsuarios implements GestionUsuarioLocal {
 		return Double.parseDouble(num);
 	}
 
-	@Override
-	public void eliminarCuentaDeAhorro(String numeroCuentaDeAhorro) {
-		// TODO Auto-generated method stub
-
-	}
-
+	/*
+	 * @Override public void eliminarCuentaDeAhorro(String numeroCuentaDeAhorro) {
+	 * // TODO Auto-generated method stub
+	 * 
+	 * }
+	 */
 }
