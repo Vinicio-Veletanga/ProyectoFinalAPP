@@ -13,6 +13,9 @@ import java.util.List;
 import javax.ejb.Local;
 
 import ec.edu.ups.bancavirtual.modelo.*;
+import ec.edu.ups.bancavirtual.modelo.SesionCliente;
+import ec.edu.ups.bancavirtual.modelo.Transaccion;
+import ec.edu.ups.bancavirtual.modelo.CuentaDeAhorro;
 @Local
 public interface GestionUsuarioLocal {
 	public String generarNumeroDeCuenta();
@@ -27,6 +30,10 @@ public interface GestionUsuarioLocal {
 	public void eliminarCliente(String cedulaCliente);
 	public void actualizarCliente(Cliente cliente);
 	public List<Cliente> listaClientes();
+	public List<SesionCliente> obtenerSesionesCliente(String cedulaCliente);
+	public void actualizarCuentaDeAhorro(CuentaDeAhorro cuentaDeAhorro);
+	public List<Transaccion> listadeTransacciones(String cedula);
+	public void guardarSesion(SesionCliente sesionCliente);
 	public void eliminarCuentaDeAhorro(String numeroCuentaDeAhorro);
 	public boolean validadorDeCedula(String cedula)throws Exception;
 	public void guardarEmpleado(Empleado empleado)throws SQLException, Exception;
@@ -36,4 +43,5 @@ public interface GestionUsuarioLocal {
 	public String getDatos();
 	public void guardarCuentaDeAhorros(CuentaDeAhorro cuentaDeAhorro);
 	public void guardarTransaccion(Transaccion transaccion) throws Exception;
+	public CuentaDeAhorro buscarCuentaDeAhorroCliente(String cedulaCliente);
 	}

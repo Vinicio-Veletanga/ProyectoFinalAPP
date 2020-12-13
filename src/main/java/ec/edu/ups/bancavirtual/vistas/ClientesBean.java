@@ -26,6 +26,7 @@ import org.primefaces.model.file.UploadedFile;
 
 import ec.edu.ups.bancavirtual.modelo.*;
 import ec.edu.ups.bancavirtual.on.GestionUsuarioLocal;
+import ec.edu.ups.bancavirtual.modelo.CuentaDeAhorro;
 import ec.edu.ups.bancavirtual.dao.*;
 
 /**
@@ -62,6 +63,10 @@ public class ClientesBean {
 	private boolean editable; 
 	private int codigoCredito;
 	private CuentaDeAhorro cuentaDeAhorro;
+	private CuentaDeAhorro buscarCuentaDeAhorro;
+	
+	
+	
 
 	/**
 	 * Metodo que permite inicializar atributos y metodos al momento que se llama a
@@ -69,7 +74,7 @@ public class ClientesBean {
 	 */
 	@PostConstruct
 	private void iniciar() {
-//		listarClientes();   
+		listarClientes();   
 		tipoTransaccion = "Todos";
 		System.out.println(lstClientes.size());
 		cuentaDeAhorro = new CuentaDeAhorro();
@@ -102,9 +107,9 @@ public class ClientesBean {
 	 * 
 	 * @return Atributo gestionUsuarios de la clase
 	 */
-//	public GestionUsuarioLocal getGestionUsuarios() {
-//		return gestionUsuarios;
-//	}
+	public GestionUsuarioLocal getGestionUsuarios() {
+		return gestionUsuarios;
+	}
 
 	/**
 	 * Metodo que permite asignar un valor al atributo gestionUsuarios de la clase
@@ -112,9 +117,9 @@ public class ClientesBean {
 	 * @param gestionUsuarios Variable asiganda al atributo gestionUsuarios de la
 	 *                        clase
 	 */
-//	public void setGestionUsuarios(GestionUsuarioLocal gestionUsuarios) {
-//		this.gestionUsuarios = gestionUsuarios;
-//	}
+	public void setGestionUsuarios(GestionUsuarioLocal gestionUsuarios) {
+		this.gestionUsuarios = gestionUsuarios;
+	}
 
 	/**
 	 * Metodo que permite obtener el atributo numeroCuenta de la clase
@@ -139,9 +144,9 @@ public class ClientesBean {
 	 * 
 	 * @return Atributo cuentaDeAhorro de la clase
 	 */
-//	public CuentaDeAhorro getCuentaDeAhorro() {
-//		return cuentaDeAhorro;
-//	}
+	public CuentaDeAhorro getCuentaDeAhorro() {
+		return cuentaDeAhorro;
+	}
 
 	/**
 	 * Metodo que permite asignar un valor al atributo cuentaDeAhorro de la clase
@@ -149,19 +154,19 @@ public class ClientesBean {
 	 * @param cuentaDeAhorro Variable asignada al atributo cuentaDeAhorro de la
 	 *                       clase
 	 */
-//	public void setCuentaDeAhorro(CuentaDeAhorro cuentaDeAhorro) {
-//		this.cuentaDeAhorro = cuentaDeAhorro;
-//	}
+	public void setCuentaDeAhorro(CuentaDeAhorro cuentaDeAhorro) {
+		this.cuentaDeAhorro = cuentaDeAhorro;
+	}
 
 	/**
 	 * Metodo que permite obtener el atributo buscarCuentaDeAhorro de la clase
 	 * 
 	 * @return Atributo buscarCuentaDeAhorro de la clase
 	 */
-//	public CuentaDeAhorro getBuscarCuentaDeAhorro() {
-//		return buscarCuentaDeAhorro;
-//	}
-//
+	public CuentaDeAhorro getBuscarCuentaDeAhorro() {
+		return buscarCuentaDeAhorro;
+	}
+
 //	/**
 //	 * Metodo que permite asignar un valor al atributo buscarCuentaDeAhorro de la
 //	 * clase
@@ -169,9 +174,9 @@ public class ClientesBean {
 //	 * @param buscarCuentaDeAhorro Variable asignada al atributo
 //	 *                             buscarCuentaDeAhorro de la clase
 //	 */
-//	public void setBuscarCuentaDeAhorro(CuentaDeAhorro buscarCuentaDeAhorro) {
-//		this.buscarCuentaDeAhorro = buscarCuentaDeAhorro;
-//	}
+	public void setBuscarCuentaDeAhorro(CuentaDeAhorro buscarCuentaDeAhorro) {
+		this.buscarCuentaDeAhorro = buscarCuentaDeAhorro;
+	}
 
 	/**
 	 * Metodo que permite obtener el atributo cedulaParametro de la clase
@@ -207,21 +212,20 @@ public class ClientesBean {
 	 * @param cedulaParametro Variable asignada al atributo cedulaParametro de la
 	 *                        clase
 	 */
-//	public void setCedulaParametro(String cedulaParametro) {
-//		this.cedulaParametro = cedulaParametro;
-//		if (cedulaParametro != null) {
-//			try {
-//				buscarCuentaDeAhorro = gestionUsuarios.buscarCuentaDeAhorroCliente(cedulaParametro);
-//				List<Transaccion> lista = gestionUsuarios.listadeTransacciones(cedulaParametro);
-//				transaccion = lista.get(lista.size() - 1);
-//				ultimosDias();  
-//				creditosAprovados(cedulaParametro);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		}
-//	}
-//
+	public void setCedulaParametro(String cedulaParametro) {
+		this.cedulaParametro = cedulaParametro;
+		if (cedulaParametro != null) {
+			try {
+				buscarCuentaDeAhorro = gestionUsuarios.buscarCuentaDeAhorroCliente(cedulaParametro);
+				/*List<Transaccion> lista = gestionUsuarios.listadeTransacciones(cedulaParametro);
+				transaccion = lista.get(lista.size() - 1);
+				ultimosDias();*/  
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 //	/***
 //	 * Metodo que permite obtener el atributo transaccion de la clase
 //	 * 
@@ -260,23 +264,6 @@ public class ClientesBean {
 		this.lstClientes = lstClientes;
 	}
 	
-	/** 
-	 * Metodo que permite obtener el atributo de tipo lista lstCreditosAprovados de la clase
-	 * @return Atributo de tipo lista lstCreditosAprovados de la clase
-	 */
-//	public List<Credito> getLstListaCreditosAprobados() {
-//		return lstCreditosAprobados;
-//	}
-//	
-//	/** 
-//	 * Metodo que permite asignar un valor al atributo de tipo lista lstCreditosAprovados de
-//	 * la clase
-//	 * @param lstListaCreditosAprobados Variable asignada al atributo de tipo lista lstCreditosAprovados de
-//	 *                    la clase
-//	 */
-//	public void setLstListaCreditosAprobados(List<Credito> lstListaCreditosAprobados) {
-//		this.lstCreditosAprobados = lstListaCreditosAprobados;
-//	}
 //
 	/**
 	 * Metodo que permite obtener el atributo de tipo lista lstSesionesClientes de
@@ -316,34 +303,7 @@ public class ClientesBean {
 //		this.lstTransacciones = lstTransacciones;
 //	}
 	
-	/** 
-	 * Metodo que permite obtener el atributo de tipo lista lstCreditosAprovados de la clase
-	 * @return Atributo de tipo lista lstCreditosAprovados de la clase
-	 */
-//	public List<Credito> getLstCreditosAprobados() {
-//		return lstCreditosAprobados;
-//	}
-//	/** 
-//	 * Metodo que permite asignar un valor al atributo de tipo lista lstCreditosAprovados de la clase
-//	 * @param lstCreditosAprobados Variable asignada al atributo de tipo lista lstCreditosAprovados de la clase
-//	 */
-//	public void setLstCreditosAprobados(List<Credito> lstCreditosAprobados) {
-//		this.lstCreditosAprobados = lstCreditosAprobados;
-//	}
-//	/** 
-//	 * Metodo que permite obtener el atributo de tipo lista lstDetallesCredito de la clase
-//	 * @return Atributo de tipo lista lstDetallesCredito de la clase
-//	 */
-//	public List<DetalleCredito> getLstDetallesCredito() {
-//		return lstDetallesCredito;
-//	}
-//	/** 
-//	 * Metodo que permite asignar un valor al atributo de tipo lista lstDetallesCredito de la clase
-//	 * @param lstDetallesCredito Variable asignada al atributo de tipo lista lstDetallesCredito de la clase
-//	 */
-//	public void setLstDetallesCredito(List<DetalleCredito> lstDetallesCredito) {
-//		this.lstDetallesCredito = lstDetallesCredito;
-//	}
+	
 	/** 
 	 * Metodo que permite obtener el atributo de tipo date fechaInicio de la clase
 	 * @return  Atributo de tipo date fechaInicio de la clase
@@ -388,35 +348,7 @@ public class ClientesBean {
 		this.tipoTransaccion = tipoTransaccion;
 	}
 	
-	/** 
-	 * Metodo que permite obtener el atributo de tipo Cliente garante de la clase
-	 * @return Atributo de tipo Cliente garante de la clase
-	 */
-	public Cliente getGarante() {
-		return garante;
-	}
 	
-	/** 
-	 * Metodo que permite asignar un valor al atributo de tipo Cliente garante de la clase
-	 * @param garante Variable asignada al atributo de tipo Cliente garante de la clase
-	 */
-	public void setGarante(Cliente garante) {
-		this.garante = garante;
-	}
-	/** 
-	 * Metodo que permite obtener el atributo de tipo String cedulaGarante de la clase
-	 * @return	Atributo de tipo String cedulaGarante de la clase
-	 */
-	public String getCedulaGarante() {
-		return cedulaGarante;
-	}
-	/** 
-	 * Metodo que permite asignar un valor al atributo de tipo String cedulaGarante de la clase
-	 * @param cedulaGarante Variable asignada al atributo de tipo String cedulaGarante de la clase
-	 */
-	public void setCedulaGarante(String cedulaGarante) {
-		this.cedulaGarante = cedulaGarante;
-	} 
 	/** 
 	 * Metodo que permite obtener el atributo de tipo boolean editable de la clase
 	 * @return Atributo de tipo boolean editable de la clase
@@ -432,21 +364,7 @@ public class ClientesBean {
 	public void setEditable(boolean editable) {
 		this.editable = editable;
 	} 
-	/** 
-	 * Metodo que permite obtener el atributo de tipo int codigoCredito de la clase
-	 * @return Atributo de tipo int codigoCredito de la clase
-	 */
-	public int getCodigoCredito() {
-		return codigoCredito;
-	}
-	/** 
-	 * Metodo que permite asignar un valor al atributo de tipo int codigoCredito de la clase
-	 * @param codigoCredito Variable asignada al atributo de tipo int codigoCredito de la clase
-	 */
-	public void setCodigoCredito(int codigoCredito) {
-		this.codigoCredito = codigoCredito;
-	}
-
+	
 	/**
 	 * Metodo que permite crear un cliente
 	 * 
@@ -523,10 +441,10 @@ public class ClientesBean {
 	 * 
 	 * @return Numero de cuenta que se ha generado
 	 */
-//	public String generarNumeroCuenta() {
-//		this.numeroCuenta = gestionUsuarios.generarNumeroDeCuenta();
-//		return numeroCuenta;
-//	}
+	public String generarNumeroCuenta() {
+		this.numeroCuenta = gestionUsuarios.generarNumeroDeCuenta();
+		return numeroCuenta;
+	}
 	/** 
 	 * Metodo que permite obtener el atributo de tipo String saldoCuenta de la clase
 	 * @return Atributo de tipo String saldoCuenta de la clase
@@ -541,34 +459,7 @@ public class ClientesBean {
 	public void setSaldoCuenta(String saldoCuenta) {
 		this.saldoCuenta = saldoCuenta;
 	}
-	/** 
-	 * Metodo que permite obtener el atributo de tipo SolicitudDeCredito solicitudDeCredito de la clase
-	 * @return Atributo de tipo SolicitudDeCredito solicitudDeCredito de la clase
-	 */
-//	public SolicitudDeCredito getSolicitudDeCredito() {
-//		return solicitudDeCredito;
-//	}
-//	/** 
-//	 * Metodo que permite asignar un valor al atributo de tipo SolicitudDeCredito solicitudDeCredito de la clase
-//	 * @param solicitudDeCredito Variable asignada al atributo de tipo SolicitudDeCredito solicitudDeCredito de la clase
-//	 */
-//	public void setSolicitudDeCredito(SolicitudDeCredito solicitudDeCredito) {
-//		this.solicitudDeCredito = solicitudDeCredito;
-//	}
-	/** 
-	 * Metodo que permite obtener el atributo de tipo String mensajeGarante de la clase
-	 * @return Atributo de tipo String mensajeGarante de la clase
-	 */
-	public String getMensajeGarante() {
-		return mensajeGarante;
-	}
-	/** 
-	 * Metodo que permite asignar un valor al atributo de tipo String mensajeGarante de la clase
-	 * @param mensajeGarante Variable asignada al atributo de tipo String mensajeGarante de la clase
-	 */
-	public void setMensajeGarante(String mensajeGarante) {
-		this.mensajeGarante = mensajeGarante;
-	}
+
 
 	public void handleClose(CloseEvent event) {
 		addMessage(event.getComponent().getId() + " closed", "So you don't like nature?");
@@ -592,9 +483,9 @@ public class ClientesBean {
 	 * Metodo que me permite obtener una lista de los clientes y asignarlo a la
 	 * variable lstClientes de la clase
 	 */
-//	public void listarClientes() {
-//		lstClientes = gestionUsuarios.listaClientes();
-//	}
+	public void listarClientes() {
+		lstClientes = gestionUsuarios.listaClientes();
+	}
 
 	/**
 	 * Metodo que permite cambiar el formato a una fecha
@@ -613,14 +504,14 @@ public class ClientesBean {
 	 * @param cedula Cedula del cliente
 	 * @return Lista de sesiones que tiene el cliente
 	 */
-//	public List<SesionCliente> cargarSesiones() {
-//		List<SesionCliente> lis = gestionUsuarios.obtenerSesionesCliente(cedulaParametro);
-//		if (lis != null) {
-//			lstSesionesCliente = lis;
-//			return lstSesionesCliente;
-//		}
-//		return null;
-//	}
+	public List<SesionCliente> cargarSesiones() {
+		List<SesionCliente> lis = gestionUsuarios.obtenerSesionesCliente(cedulaParametro);
+		if (lis != null) {
+			lstSesionesCliente = lis;
+			return lstSesionesCliente;
+		}
+		return null;
+	}
 	
 	/** 
 	 * Metodo que me permite obtener un mensaje

@@ -214,8 +214,8 @@ public class EmpleadosBean {
 				empleadoON.guardarEmpleado(empleado);
 				addMessage("Confirmacion", "Empleado Guardado");
 				
-			} else if (tipoEmpleado.equalsIgnoreCase("jefeCredito")) {
-				empleado.setRol("JefeCredito");
+			} else if (tipoEmpleado.equalsIgnoreCase("asistentecapacitaciones")) {
+				empleado.setRol("Asistente de Capacitaciones");
 				empleadoON.guardarEmpleado(empleado);
 				addMessage("Confirmacion", "Empleado Guardado");
 			}
@@ -230,7 +230,7 @@ public class EmpleadosBean {
 		try {
 			
 			FacesContext contex = FacesContext.getCurrentInstance();
-			contex.getExternalContext().redirect("Lista-Empleados.xhtml");
+			contex.getExternalContext().redirect("IndexAdmin.xhtml");
 		} catch (Exception e) {
 		}
 		return null;

@@ -13,7 +13,8 @@
 	<meta name="author" content="" />
 	<title><ui:insert name="title" /></title>
 
-	
+	<f:event type="preRenderView"
+		listener="#{verificarSesionBean.verificarSessionAdmin()}" />
 
 	<!-- Bootstrap Core CSS -->
 	<link href="template/css/bootstrap.min.css" rel="stylesheet" />
@@ -51,7 +52,7 @@
 				</a>
 					<ul class="dropdown-menu dropdown-user">
 						<li><p:commandButton icon="fa fa-fw fa-sign-out"
-							action="#{loginBean.logout()}" value="Cerrar Sesión"
+							action="#{loginEmpleadoBeans.logout()}" value="Cerrar Sesión"
 							styleClass="red-button" /></li>
 					</ul></li>
 			</ul>
@@ -66,9 +67,11 @@
 						<li><a href="#"><i class="fa fa-users fa-fw"></i>
 								Administración de Usuarios<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
-								
+								<li><a href="CreacionEmpleado.xhtml"> <i
+										class="fa fa-user-plus fa-fw" />Crear Empleado
+								</a></li>
 								<li><a href="CrearCliente.xhtml"> <i
-										class="fa fa-user fa-fw" />Crear Cliente
+										class="fa fa-user-plus fa-fw" />Crear Cliente
 								</a></li>
 							</ul> <!-- /.nav-second-level --></li>
 					</ul>
