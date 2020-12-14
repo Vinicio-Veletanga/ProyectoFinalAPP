@@ -21,6 +21,7 @@ public class CuentaDeAhorro implements Serializable {
 	@Column(name="numero_cuenta")
 	private String numeroCuentaDeAhorro;
 	private Date fechaDeRegistro;  
+
 	private Double saldoCuentaDeAhorro; 
 	@OneToOne(fetch = FetchType.EAGER,cascade = {CascadeType.ALL })
 	@JoinColumn(name="cedula_cliente")
