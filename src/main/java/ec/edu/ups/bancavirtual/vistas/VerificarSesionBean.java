@@ -23,7 +23,7 @@ public class VerificarSesionBean implements Serializable {
 			Cliente cliente = (Cliente) context.getExternalContext().getSessionMap().get("cliente");
 
 			if (cliente == null) {
-				context.getExternalContext().redirect("InicioClientes.xhtml");
+				context.getExternalContext().redirect("LoginCliente.xhtml");
 			}
 
 		} catch (Exception e) {
@@ -37,7 +37,7 @@ public class VerificarSesionBean implements Serializable {
 	            FacesContext context = FacesContext.getCurrentInstance();
 				Empleado  empleado= (Empleado) context.getExternalContext().getSessionMap().get("empleado");
 	            if (empleado == null) {
-	                context.getExternalContext().redirect("InicioUsuarios.xhtml");
+	                context.getExternalContext().redirect("LoginEmpleado.xhtml");
 	            }
 	            
 	        } catch (Exception e) {
