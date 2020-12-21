@@ -222,14 +222,8 @@
         	</artifactId>
         </dependency>
         <dependency>
-        	<artifactId></artifactId>
-        </dependency>
-        <dependency>
         	<groupId>com.fasterxml</groupId>
         	<artifactId>classmate</artifactId>
-        </dependency>
-        <dependency>
-        	<artifactId></artifactId>
         </dependency>
         <dependency>
         	<groupId>com.fasterxml.jackson.core</groupId>

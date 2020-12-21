@@ -547,33 +547,7 @@ public class CajeroBean {
 					contex.getExternalContext().redirect("IndexCajero.xhtml");
 				} catch (Exception e) {
 				}
-			} else if (tipoTransaccion.equalsIgnoreCase("retiro") && monto <= clp.getSaldoCuentaDeAhorro()) {
-				Double nvmonto2 = clp.getSaldoCuentaDeAhorro() - monto;
-				clp.setSaldoCuentaDeAhorro(nvmonto2);
-				Transaccion t2 = new Transaccion();
-				t2.setCliente(clp.getCliente());
-				t2.setMonto(monto);
-				t2.setFecha(new Date());
-				t2.setTipo("retiro");
-				t2.setSaldoCuenta(nvmonto2);
-				try {
-					
-					clienteON.guardarTransaccion(t2);
-					addMessage("Confirmacion", "Cuenta Guardada");
-					editable = false;
-					listaTra = new ArrayList<Transaccion>();
-					
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.getMessage();
-				}
-				try {
-					
-					FacesContext contex = FacesContext.getCurrentInstance();
-					contex.getExternalContext().redirect("IndexCajero.xhtml");
-				} catch (Exception e) {
-				}
-			}
+			} 
 			return "IndexCajero";
 		}
 

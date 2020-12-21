@@ -43,4 +43,5 @@ public interface GestionUsuarioLocal {
 	public CuentaDeAhorro buscarCuentaDeAhorroCliente(String cedulaCliente);
 	public void guardarPoliza(Poliza p);
 	public List<Poliza> listasPolizas();
+	public List<Poliza> getListasPolizas();
 	}
