@@ -67,7 +67,7 @@ public class GestionUsuarios implements GestionUsuarioLocal {
 	private PolizaDAO polizaDAO;
 
 	public String generarNumeroDeCuenta() {
-		int numeroInicio = 4040;
+		int numeroInicio = 0;
 		List<CuentaDeAhorro> listaCuentas = listaCuentaDeAhorros();
 		int numero = listaCuentas.size() + 1;
 		String resultado = String.format("%08d", numero);
@@ -543,6 +543,12 @@ public class GestionUsuarios implements GestionUsuarioLocal {
 	
 	
 	public List<Poliza> listasPolizas() {
+		return polizaDAO.getPolizas();
+	}
+
+	@Override
+	public List<Poliza> getListasPolizas() {
+		// TODO Auto-generated method stub
 		return polizaDAO.getPolizas();
 	}
 

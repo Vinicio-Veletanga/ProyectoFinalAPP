@@ -364,19 +364,4 @@ private String tipoCuenta;
 		return null;
 	}
 
-	/*
-	 * public String crearSolicitudCredito() throws IOException{
-	 * System.out.println("ENTRO EN LA SOLICITUD"); Cliente cliente = new Cliente();
-	 * cliente = gestionUsuarios.buscarCliente("");
-	 * solicitudDeCredito.setClienteCredito(cliente);
-	 * solicitudDeCredito.setEstadoCredito("Solicitando");
-	 * solicitudDeCredito.setArCedula(gestionUsuarios.toByteArray(arCedula.
-	 * getInputStream()));
-	 * solicitudDeCredito.setArPlanillaServicios(gestionUsuarios.toByteArray(
-	 * arPlanillaServicios.getInputStream()));
-	 * solicitudDeCredito.setArRolDePagos(gestionUsuarios.toByteArray(arRolDePagos.
-	 * getInputStream()));
-	 * gestionUsuarios.guardarSolicitudCredito(solicitudDeCredito); return
-	 * "SolicitudCredito"; }
-	 */
 }

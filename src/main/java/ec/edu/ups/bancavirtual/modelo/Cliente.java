@@ -4,12 +4,16 @@ import java.beans.Transient;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import ec.edu.ups.bancavirtual.modelo.CuentaDeAhorro;
 /**
  * @author ADMINX
  *
@@ -28,11 +32,21 @@ public class Cliente implements Serializable {
 	private String correo;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaNacimiento;
-	
+//	@Column(name="usuario")
 	private String usuario; 
 	private String clave;  
 	
-
+//	@OneToMany(mappedBy = "cliente")
+//	private Set<CuentaDeAhorro> cuentaDeAhorro;
+//
+//	public Set<CuentaDeAhorro> getCuentaDeAhorro() {
+//		return cuentaDeAhorro;
+//	}
+//
+//	public void setCuentaDeAhorro(Set<CuentaDeAhorro> cuentaDeAhorro) {
+//		this.cuentaDeAhorro = cuentaDeAhorro;
+//	}
+	
 	public Cliente() {
 
 	} 

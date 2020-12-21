@@ -195,14 +195,10 @@ public class LoginEmpleadoBeans {
 		editabledos = true;
 	}
 
-	public String datos() {
-		String res = empleadoON.getDatos();
-		System.out.println(res);
-		return "";
-	}
+	
 
 	public void addMessage(String summary, String detail) {
-		System.out.println(summary + "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmkkk" + detail);
+		System.out.println(summary + "<<>>" + detail);
 		
 		FacesContext.getCurrentInstance().addMessage(null,
 				new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail));
