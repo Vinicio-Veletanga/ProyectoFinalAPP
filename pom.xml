@@ -18,12 +18,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>ec.edu.ups</groupId>
-    <artifactId>bancavirtual</artifactId>
+    <groupId>ec.ups.edu</groupId>
+    <artifactId>ExamenVeletangaVinicioServidor1</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     
     <packaging>war</packaging>
-    <name>bancavirtual</name>
+    <name>ExamenVeletangaVinicioServidor1</name>
     <description>Insert description for your project here.</description>
 
     <properties>
@@ -138,6 +138,7 @@
         <dependency>
             <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <!-- Import the JPA API, we use provided scope as the API is included in WildFly / JBoss EAP -->
@@ -151,6 +152,7 @@
         <dependency>
             <groupId>org.jboss.spec.javax.faces</groupId>
             <artifactId>jboss-jsf-api_2.3_spec</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <!-- Import the JAX-RS API, we use provided scope as the API is included in WildFly / JBoss EAP -->
@@ -218,6 +220,21 @@
         	<artifactId>
         		hibernate-validator-annotation-processor
         	</artifactId>
+        </dependency>
+        <dependency>
+        	<artifactId></artifactId>
+        </dependency>
+        <dependency>
+        	<groupId>com.fasterxml</groupId>
+        	<artifactId>classmate</artifactId>
+        </dependency>
+        <dependency>
+        	<artifactId></artifactId>
+        </dependency>
+        <dependency>
+        	<groupId>com.fasterxml.jackson.core</groupId>
+        	<artifactId>jackson-annotations</artifactId>
+        	<version>2.11.0</version>
         </dependency>
     </dependencies>
 	

@@ -186,20 +186,10 @@ public class CajeroBean {
 		return cedulaAux;
 	}
 	
-	/**
-	 * Asignar el valor de la cedula del cliente que va a realizar un pago de Credito
-	 * @param cedulaAux El parametro cedulaAux me permite asignar la cedula del cliente que va
-	 * a realizar el pago de credito.
-	 */
 	public void setCedulaAux(String cedulaAux) {
 		this.cedulaAux = cedulaAux;
 	}
 	
-	/**
-	 * Metodo para obtener el valor de visualizacion
-	 * @return Devuelve true o false para poder visualizar los paneles en la
-	 * pagina del cajero
-	 */
 	public boolean isEditable2() {
 		return editable2;
 	}
@@ -507,60 +497,7 @@ public class CajeroBean {
 	 
 	
 	 
-	 
-	 /**
-	  * Metodo para generar el pastel de los tipos de clientes de la aplicacion
-	  */
-	 private void createPieModel() {
-		 String m = clienteON.getDatos();
-		 String[] parts = m.split(";");
-		 String part1 = String.valueOf(Integer.parseInt(parts[0])-700);  
-		 String part2 = String.valueOf(Integer.parseInt(parts[1])-300);  
-		
-	        pieModel = new PieChartModel();
-	        ChartData data = new ChartData();
-	         
-	        PieChartDataSet dataSet = new PieChartDataSet();
-	        List<Number> values = new ArrayList<>();
-	        
-	        values.add(Integer.parseInt(part1));
-	        values.add(Integer.parseInt(part2));
-	        //values.add(100);
-	        dataSet.setData(values);
-	         
-	        List<String> bgColors = new ArrayList<>();
-	        bgColors.add("rgb(255, 99, 132)");
-	        bgColors.add("rgb(54, 162, 235)");
-	      //  bgColors.add("rgb(255, 205, 86)");
-	        dataSet.setBackgroundColor(bgColors);
-	         
-	        data.addChartDataSet(dataSet);
-	        List<String> labels = new ArrayList<>();
-	        labels.add("Clientes Buenos");
-	        labels.add("Clientes Malos");
-	      //  labels.add("Yellow");
-	        data.setLabels(labels);
-	         
-	        pieModel.setData(data);
-	    }
-	 
-	 /**
-	  * Metodo para cargar la grafica
-	  * @param m El parametro m me permite cambiar la grafica de acuerdo al parametro
-	  */
-	 public void cambioGrafica(String m) {
-		 if (m.equals("A")) {
-			createPieModel();
-			 grafica = true;	
-		}
-	 }
-	 
-	 /**
-	  * Metodo para mostras el mensaje en la pagina del cajero
-	  * @param summary El parametro sumary me permite asignar un valor a la pagina
-	  * @param detail El parametro detail permite establecer el mensaje de la pagina
-	  */
-	 public void addMessage(String summary, String detail) {   
+	  public void addMessage(String summary, String detail) {   
 	        FacesContext context = FacesContext.getCurrentInstance();
 	        context.getExternalContext().getFlash().setKeepMessages(true);
 	        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail));
@@ -574,5 +511,71 @@ public class CajeroBean {
 	        event.setTop(500);
 	    	addMessage(event.getComponent().getId() + " moved", "Left: " + event.getLeft() + ", Top: " + event.getTop());
 	    }
+
+	    
+
+		public String agregarCuenta() {
+			CuentaDeAhorro clp = clienteON.buscarCuentaDeAhorroCliente(cliente.getCedula());
+			
+			if (tipoTransaccion.equalsIgnoreCase("deposito")) {
+				Double nvmonto = clp.getSaldoCuentaDeAhorro() + monto;
+				clp.setSaldoCuentaDeAhorro(nvmonto);
+				clp.setCliente(clp.getCliente());
+				clp.setFechaDeRegistro(new Date());
+				clienteON.guardarCuentaDeAhorros(clp);
+				
+				Transaccion t = new Transaccion();
+				
+				t.setCliente(clp.getCliente());
+				t.setMonto(monto);
+				t.setFecha(new Date());
+				t.setTipo("deposito");
+				t.setSaldoCuenta(nvmonto);
+				
+				try {
+					clienteON.guardarTransaccion(t);
+					addMessage("Confirmacion", "Cuenta Guardada");
+					editable = false;
+					listaTra = new ArrayList<Transaccion>();
+					
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.getMessage();
+				}
+				try {
+					FacesContext contex = FacesContext.getCurrentInstance();
+					contex.getExternalContext().redirect("IndexCajero.xhtml");
+				} catch (Exception e) {
+				}
+			} else if (tipoTransaccion.equalsIgnoreCase("retiro") && monto <= clp.getSaldoCuentaDeAhorro()) {
+				Double nvmonto2 = clp.getSaldoCuentaDeAhorro() - monto;
+				clp.setSaldoCuentaDeAhorro(nvmonto2);
+				Transaccion t2 = new Transaccion();
+				t2.setCliente(clp.getCliente());
+				t2.setMonto(monto);
+				t2.setFecha(new Date());
+				t2.setTipo("retiro");
+				t2.setSaldoCuenta(nvmonto2);
+				try {
+					
+					clienteON.guardarTransaccion(t2);
+					addMessage("Confirmacion", "Cuenta Guardada");
+					editable = false;
+					listaTra = new ArrayList<Transaccion>();
+					
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.getMessage();
+				}
+				try {
+					
+					FacesContext contex = FacesContext.getCurrentInstance();
+					contex.getExternalContext().redirect("IndexCajero.xhtml");
+				} catch (Exception e) {
+				}
+			}
+			return "IndexCajero";
+		}
+
 
 }

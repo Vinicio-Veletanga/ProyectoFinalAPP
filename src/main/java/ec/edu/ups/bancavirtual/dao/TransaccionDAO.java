@@ -20,7 +20,7 @@ import ec.edu.ups.bancavirtual.dao.*;
 @Stateless
 public class TransaccionDAO {
 
-	@PersistenceContext(name = "coopjamPersistenceUnit")
+	@PersistenceContext(name = "bancavirtualPersistenceUnit")
 	private EntityManager em;
 	
 	/**

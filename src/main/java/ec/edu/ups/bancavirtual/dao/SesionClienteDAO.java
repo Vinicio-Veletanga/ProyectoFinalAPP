@@ -44,32 +44,20 @@ public class SesionClienteDAO {
 		return em.find(SesionCliente.class, codigoSesion);
 	}
 	
-	/** 
-	 * Metodo que permite eliminar una sesion de la base de datos
-	 * @param codigoSesion Codigo de la sesion que se elimina
-	 */
+	
 	public void delete(int codigoSesion) {
 		SesionCliente c = read(codigoSesion);
 		em.remove(c);
 	}
 	
-	/** 
-	 * Metodo que permite obtener las sesiones que estan registrados en la base de datos
-	 * @return Lista de sesiones que estan registradas en la base de datos
-	 */
+	
 	public List<SesionCliente> getSesionClientes() {
 		String jpql = "SELECT s FROM SesionCliente s ";
 
 		Query q = em.createQuery(jpql, SesionCliente.class);
 		return q.getResultList();
-	}  
+	} 
 	
-	/** 
-	 * Metodo que permite obtener las sesiones de un cliente registrado en la base de datos
-	 * @param cedulaCliente Cedula del cliente que debe tener las sesiones registradas en la base
-	 * @return lista de sesiones de un cliente en especifico
-	 * @throws Exception Control de errores a la hora de realizar la consulta
-	 */
 	public List<SesionCliente> obtenerSesionCliente(String cedulaCliente) throws Exception { 
 		try {
 			String jpql = "SELECT s FROM SesionCliente s WHERE s.cliente.cedula = :cedulaCliente order by s.fechaSesion desc";
