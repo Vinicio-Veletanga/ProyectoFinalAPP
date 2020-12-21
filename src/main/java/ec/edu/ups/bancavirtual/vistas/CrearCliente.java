@@ -42,6 +42,17 @@ public class CrearCliente {
 	private Part arPlanillaServicios;
 	private Part arRolDePagos;
 	private CuentaDeAhorro cuentaDeAhorro;
+private String tipoCuenta;
+	
+	public String getTipoCuenta() {
+		return tipoCuenta;
+	}
+
+	public void setTipoCuenta(String tipoCuenta) {
+		this.tipoCuenta = tipoCuenta;
+	}
+
+	
 
 	/**
 	 * Metodo que permite inicializar atributos y metodos al momento que se llama a
@@ -275,12 +286,6 @@ public class CrearCliente {
 		return null;
 	}
 
-	/**
-	 * Metodo que permite verificar que la cedula que se ingresa sea valida
-	 * 
-	 * @return Variable de tipo String en donde se asigna un mensaje si la cedula es
-	 *         correcta o no
-	 */
 	public String validarCedula() {
 		if (cliente.getCedula() != null) {
 			Cliente cli = gestionUsuarios.buscarCliente(cliente.getCedula());
@@ -303,28 +308,17 @@ public class CrearCliente {
 
 	}
 
-	/**
-	 * Metodo que permite obtener el numero de cuenta que se asignara al cliente
-	 * 
-	 * @return Atributo numeroCuenta de la clase en donde se asigana el numero de
-	 *         cuenta que se genera
-	 */
 	public String generarNumeroCuenta() {
 		this.numeroCuenta = gestionUsuarios.generarNumeroDeCuenta();
 		return numeroCuenta;
 	}
 
-	/**
-	 * Metodo que permite crear una cuenta con sus respectivos atributos y la
-	 * primera transaccion que se realiza al crear la cuenta de ahorro
-	 * 
-	 * @return Nulo
-	 */
 	public String crearCuenta() {
 		try {
 			cuentaDeAhorro.setNumeroCuentaDeAhorro(numeroCuenta);
 			cuentaDeAhorro.setFechaDeRegistro(new Date());
 			cuentaDeAhorro.setCliente(cliente);
+			cuentaDeAhorro.setTipoCuenta(tipoCuenta);
 			cuentaDeAhorro.setSaldoCuentaDeAhorro(Double.parseDouble(saldoCuenta));
 			gestionUsuarios.guardarCuentaDeAhorros(cuentaDeAhorro);
 			Transaccion transaccion = new Transaccion();
@@ -333,6 +327,7 @@ public class CrearCliente {
 			transaccion.setTipo("deposito");
 			transaccion.setCliente(cliente);
 			transaccion.setSaldoCuenta(cuentaDeAhorro.getSaldoCuentaDeAhorro());
+			
 			gestionUsuarios.guardarTransaccion(transaccion);
 			addMessage("Confirmacion", "Cliente Guardado");
 //			cliente = new Cliente();

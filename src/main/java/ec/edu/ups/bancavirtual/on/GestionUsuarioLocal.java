@@ -13,9 +13,6 @@ import java.util.List;
 import javax.ejb.Local;
 
 import ec.edu.ups.bancavirtual.modelo.*;
-import ec.edu.ups.bancavirtual.modelo.SesionCliente;
-import ec.edu.ups.bancavirtual.modelo.Transaccion;
-import ec.edu.ups.bancavirtual.modelo.CuentaDeAhorro;
 @Local
 public interface GestionUsuarioLocal {
 	public String generarNumeroDeCuenta();
@@ -44,4 +41,6 @@ public interface GestionUsuarioLocal {
 	public void guardarCuentaDeAhorros(CuentaDeAhorro cuentaDeAhorro);
 	public void guardarTransaccion(Transaccion transaccion) throws Exception;
 	public CuentaDeAhorro buscarCuentaDeAhorroCliente(String cedulaCliente);
+	public void guardarPoliza(Poliza p);
+	public List<Poliza> listasPolizas();
 	}

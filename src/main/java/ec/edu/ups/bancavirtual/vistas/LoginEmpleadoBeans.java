@@ -203,10 +203,7 @@ public class LoginEmpleadoBeans {
 
 	public void addMessage(String summary, String detail) {
 		System.out.println(summary + "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmkkk" + detail);
-		/*
-		 * FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary,
-		 * detail); FacesContext.getCurrentInstance().addMessage(null, message);
-		 */
+		
 		FacesContext.getCurrentInstance().addMessage(null,
 				new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail));
 	}
@@ -214,7 +211,6 @@ public class LoginEmpleadoBeans {
 	public String logout() {
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 		return "LoginEmpleado?faces-redirect=true";
-		// return null;
 
 	}
 

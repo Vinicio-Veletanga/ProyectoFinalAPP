@@ -20,7 +20,7 @@ import ec.edu.ups.bancavirtual.modelo.TransferenciaLocal;
 @Stateless
 public class TransferenciaLocalDAO {
 	//Atributo de la clase
-		@PersistenceContext(name = "coopjamPersistenceUnit")
+		@PersistenceContext(name = "bancavirtualPersistenceUnit")
 		private EntityManager em;
 		/** 
 		 * Metodo que permite registrar una Transferencia Local en la base de datos
